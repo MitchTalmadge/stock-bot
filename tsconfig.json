@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "ES6",
+      "DOM"
+    ],
+    "module": "commonjs",
+    "sourceRoot": "./src",
+    "sourceMap": true
+  },
+  "include": [
+    "./src/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

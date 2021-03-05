@@ -1,0 +1,29 @@
+{
+  "name": "stock-bot",
+  "description": "A bot to level the playing field against scalpers and automatically detect when products go in-stock.",
+  "authors": "Mitch Talmadge <mitch@talmad.ge>",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "ts-node ./src/main.ts",
+    "dev:watch": "nodemon --inspect=0.0.0.0 ./src/main.ts"
+  },
+  "nodemonConfig": {
+    "delay": 1000,
+    "watch": [
+      "src"
+    ],
+    "execMap": {
+      "ts": "node -r ts-node/register"
+    },
+    "ext": "*"
+  },
+  "dependencies": {
+    "selenium-webdriver": "^4.0.0-beta.1",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.2"
+  },
+  "devDependencies": {
+    "@types/selenium-webdriver": "^3.0.8",
+    "nodemon": "^2.0.7"
+  }
+}

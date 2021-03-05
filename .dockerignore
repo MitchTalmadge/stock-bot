@@ -1,0 +1,12 @@
+# Git
+.git
+.gitignore
+
+# IDE
+.vscode
+
+# Docker
+Dockerfile
+
+# NPM
+node_modules
