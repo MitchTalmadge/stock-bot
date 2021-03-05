@@ -38,13 +38,19 @@ class StockBot {
   }
 
   private async test() {
-    let url = "https://www.amd.com/en/direct-buy/5450881400/us";
+    let urls = ["https://www.amd.com/en/direct-buy/5450881400/us", "https://www.amd.com/en/direct-buy/5450881600/us"];
 
-    const scraper = this.scrapers.find(s => s.canHandleUrl(url))
-    if (scraper) {
-      const inStock = await scraper.isInStock(url);
-      console.log(url, "in stock:", inStock);
-      console.log(await this.driver.getTitle());
+    for (let url of urls) {
+      const scraper = this.scrapers.find(s => s.canHandleUrl(url))
+      if (scraper) {
+        const result = await scraper.scrape(url);
+        console.log(await this.driver.getTitle());
+        if (result.inStock) {
+          console.log(`✅ In Stock for ${result.price}: ${url}`)
+        } else {
+          console.log(`⛔ Not In Stock: ${url}`)
+        }
+      }
     }
   }
 

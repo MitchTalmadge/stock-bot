@@ -7,3 +7,5 @@ services:
     command: "-c \"npm install && npm run dev:watch\""
     volumes:
       - ./:/opt/app
+    ports:
+      - 9229:9229

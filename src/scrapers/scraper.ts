@@ -1,4 +1,5 @@
 import * as Selenium from "selenium-webdriver";
+import { ScraperResult } from "../models/scraper-result";
 
 export default abstract class Scraper {
 
@@ -7,6 +8,6 @@ export default abstract class Scraper {
 
   public abstract canHandleUrl(url: string): boolean;
 
-  public abstract isInStock(url: string): Promise<boolean>;
+  public abstract scrape(url: string): Promise<ScraperResult>;
 
 }
