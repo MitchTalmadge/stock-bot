@@ -1,9 +1,13 @@
 import * as Selenium from 'selenium-webdriver';
 import { Options } from "selenium-webdriver/chrome";
+import Scraper from './scrapers/scraper';
+import AMDScraper from './scrapers/amd';
 
 class StockBot {
 
   private driver: Selenium.WebDriver;
+
+  private scrapers: Scraper[] = [];
 
   constructor() {
     this.init().then(() => {
@@ -29,12 +33,19 @@ class StockBot {
         .addArguments("--window-size=1920,1080")
       )
       .build()
+
+    this.scrapers.push(new AMDScraper(this.driver))
   }
 
   private async test() {
-    await this.driver.get("https://mitchtalmadge.com/");
-    const title = await this.driver.getTitle();
-    console.log(title);
+    let url = "https://www.amd.com/en/direct-buy/5450881400/us";
+
+    const scraper = this.scrapers.find(s => s.canHandleUrl(url))
+    if (scraper) {
+      const inStock = await scraper.isInStock(url);
+      console.log(url, "in stock:", inStock);
+      console.log(await this.driver.getTitle());
+    }
   }
 
 }
